@@ -1,6 +1,6 @@
 # Sunbird User Org Service
 
-This repository contains the code for the User Org micro-service, providing the APIs for User and Org functionality of Sunbird. The code in this repository is licensed under the MIT License unless otherwise noted. Please see the [LICENSE](https://github.com/project-sunbird/sunbird-lms-service/blob/master/LICENSE) file for details.
+This repository contains the code for the User Org micro-service, providing the APIs for User and Org functionality of Sunbird. The code in this repository is licensed under the MIT License unless otherwise noted. Please see the [LICENSE](https://github.com/Sunbird-Lern/userorg-service/blob/master/LICENSE) file for details.
 
 ## User org development environment setup
 
@@ -73,7 +73,7 @@ docker ps -a | grep cassandra
 
 ## To create/load keyspaces and tables to Cassandra
 
-Click the link [sunbird-utils-cassandra-setup](https://github.com/Sunbird-Lern/sunbird-utils/tree/release-5.3.0#readme) and follow the steps for creating/loading the Cassandra keyspaces and tables to your development environment.
+Click the link [sunbird-utils-cassandra-setup](https://github.com/Sunbird-Lern/sunbird-utils/tree/master#readme) and follow the steps for creating/loading the Cassandra keyspaces and tables to your development environment.
 
 Note: It is mandatory to follow the instructions provided in the link.
 
@@ -166,11 +166,11 @@ Make sure to replace `location.json` with the name of the index JSON file for th
 
 Here's the list of indices to create and their corresponding links:
 
-- [user](https://github.com/project-sunbird/sunbird-devops/blob/release-5.3.0-lern/ansible/roles/es-mapping/files/indices/userv3.json)
-- [userfeed](https://github.com/project-sunbird/sunbird-devops/blob/release-5.3.0-lern/ansible/roles/es-mapping/files/indices/userfeed.json)
-- [usernotes](https://github.com/project-sunbird/sunbird-devops/blob/release-5.3.0-lern/ansible/roles/es-mapping/files/indices/usernotes.json)
-- [org](https://github.com/project-sunbird/sunbird-devops/blob/release-5.3.0-lern/ansible/roles/es-mapping/files/indices/orgv3.json)
-- [location](https://github.com/project-sunbird/sunbird-devops/blob/release-5.3.0-lern/ansible/roles/es-mapping/files/indices/location.json)
+- [user](https://github.com/project-sunbird/sunbird-devops/blob/master/ansible/roles/es-mapping/files/indices/userv3.json)
+- [userfeed](https://github.com/project-sunbird/sunbird-devops/blob/master/ansible/roles/es-mapping/files/indices/userfeed.json)
+- [usernotes](https://github.com/project-sunbird/sunbird-devops/blob/master/ansible/roles/es-mapping/files/indices/usernotes.json)
+- [org](https://github.com/project-sunbird/sunbird-devops/blob/master/ansible/roles/es-mapping/files/indices/orgv3.json)
+- [location](https://github.com/project-sunbird/sunbird-devops/blob/master/ansible/roles/es-mapping/files/indices/location.json)
 
 To create mappings for the listed indices, follow these steps:
 
@@ -197,11 +197,11 @@ Make sure to replace `location-mapping.json` with the name of the mapping JSON f
 
 Here's the list of mappings to create and their corresponding links:
 
-- [user](https://github.com/project-sunbird/sunbird-devops/blob/release-5.3.0-lern/ansible/roles/es-mapping/files/mappings/userv3-mapping.json)
-- [userfeed](https://github.com/project-sunbird/sunbird-devops/blob/release-5.3.0-lern/ansible/roles/es-mapping/files/mappings/userfeed-mapping.json)
-- [usernotes](https://github.com/project-sunbird/sunbird-devops/blob/release-5.3.0-lern/ansible/roles/es-mapping/files/mappings/usernotes-mapping.json)
-- [org](https://github.com/project-sunbird/sunbird-devops/blob/release-5.3.0-lern/ansible/roles/es-mapping/files/mappings/orgv3-mapping.json)
-- [location](https://github.com/project-sunbird/sunbird-devops/blob/release-5.3.0-lern/ansible/roles/es-mapping/files/mappings/location-mapping.json)
+- [user](https://github.com/project-sunbird/sunbird-devops/blob/master/ansible/roles/es-mapping/files/mappings/userv3-mapping.json)
+- [userfeed](https://github.com/project-sunbird/sunbird-devops/blob/master/ansible/roles/es-mapping/files/mappings/userfeed-mapping.json)
+- [usernotes](https://github.com/project-sunbird/sunbird-devops/blob/master/ansible/roles/es-mapping/files/mappings/usernotes-mapping.json)
+- [org](https://github.com/project-sunbird/sunbird-devops/blob/master/ansible/roles/es-mapping/files/mappings/orgv3-mapping.json)
+- [location](https://github.com/project-sunbird/sunbird-devops/blob/master/ansible/roles/es-mapping/files/mappings/location-mapping.json)
 
 ## User Org Service Setup
 
@@ -209,22 +209,22 @@ To set up the User Org service, follow the steps below:
 
 1. Clone the latest branch of the user-org service using the following command:
 ```shell
-git clone https://github.com/Sunbird-Lern/sunbird-lms-service.git
+git clone https://github.com/Sunbird-Lern/userorg-service.git
 ```
 
-2. Set up the necessary environment variables by running the following script in the path `<project-base-path>/sunbird-lms-service`:
+2. Set up the necessary environment variables by running the following script in the path `<project-base-path>/userorg-service`:
 ```shell
 ./scripts/userorg-config.sh
 ```
 
-3. Build the application using the following maven command in the path `<project-base-path>/sunbird-lms-service`:
+3. Build the application using the following maven command in the path `<project-base-path>/userorg-service`:
 ```shell
 mvn clean install -DskipTests -DCLOUD_STORE_GROUP_ID=org.sunbird -DCLOUD_STORE_ARTIFACT_ID=cloud-store-sdk -DCLOUD_STORE_VERSION=1.4.6
 ```
 Make sure the build is successful before proceeding to the next step. If the build is not successful,
 fix any configuration issues and rebuild the application.
 
-4. Run the netty server using the following maven command in the path `<project-base-path>/sunbird-lms-service/controller`:
+4. Run the netty server using the following maven command in the path `<project-base-path>/userorg-service/controller`:
 ```shell
 mvn play2:run
 ```
@@ -236,4 +236,4 @@ curl --location --request GET 'http://localhost:9000/health’
 If all connections are established successfully, the health status will be shown as 'true', otherwise it will be 'false'.
 
 To make the User/Org service completely working, some pre-required configuration setup is mandatory.
-Follow the steps given in the link [pre-required configuration setup](https://github.com/Sunbird-Lern/sunbird-lms-service/blob/release-5.3.0/lernsetup.md) to complete the setup.
+Follow the steps given in the link [pre-required configuration setup](https://github.com/Sunbird-Lern/userorg-service/blob/master/setup.md) to complete the setup.

@@ -25,6 +25,9 @@ public class KeyManager {
 
   public static void init() {
     String basePath = propertiesCache.getProperty(JsonKey.ACCESS_TOKEN_PUBLICKEY_BASEPATH);
+    if (basePath == null || basePath.trim().isEmpty()) {
+      basePath = "/keys/"; // Default base path if not configured
+    }
     try (Stream<Path> walk = Files.walk(Paths.get(basePath))) {
       List<String> result =
           walk.filter(Files::isRegularFile).map(x -> x.toString()).collect(Collectors.toList());
