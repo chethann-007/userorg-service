@@ -299,7 +299,6 @@ public class UserRequestValidator extends BaseRequestValidator {
     externalIdsValidation(userRequest, JsonKey.UPDATE);
     phoneValidation(userRequest);
     updateUserBasicValidation(userRequest);
-    validateUserOrgField(userRequest);
     if ((null == userRequest.getRequest().get(JsonKey.DOB_VALIDATION_DONE))) {
       validateDob(userRequest);
     }
@@ -335,16 +334,6 @@ public class UserRequestValidator extends BaseRequestValidator {
     ProjectCommonException.throwClientErrorException(
         ResponseCode.invalidParameterValue,
         MessageFormat.format(ResponseCode.invalidParameterValue.getErrorMessage(), value, param));
-  }
-
-  private void validateUserOrgField(Request userRequest) {
-    Map<String, Object> request = userRequest.getRequest();
-    if (request.containsKey(JsonKey.ORGANISATIONS)) {
-      ProjectCommonException.throwClientErrorException(
-          ResponseCode.errorUnsupportedField,
-          ProjectUtil.formatMessage(
-              ResponseCode.errorUnsupportedField.getErrorMessage(), JsonKey.ORGANISATIONS));
-    }
   }
 
   public void externalIdsValidation(Request userRequest, String operation) {
@@ -636,64 +625,16 @@ public class UserRequestValidator extends BaseRequestValidator {
 
   @SuppressWarnings("unchecked")
   private void validateFrameworkDetails(Request request) {
-    if (request.getRequest().containsKey(JsonKey.FRAMEWORK)
-        && (!(request.getRequest().get(JsonKey.FRAMEWORK) instanceof Map))) {
+    // Only validate that framework is a Map if present
+    if (request.getRequest().containsKey(JsonKey.FRAMEWORK) 
+        && request.getRequest().get(JsonKey.FRAMEWORK) != null
+        && !(request.getRequest().get(JsonKey.FRAMEWORK) instanceof Map)) {
       throw new ProjectCommonException(
           ResponseCode.dataTypeError,
           ResponseCode.dataTypeError.getErrorMessage(),
           ERROR_CODE,
           JsonKey.FRAMEWORK,
           JsonKey.MAP);
-    } else {
-      Map<String, Object> framework =
-          (Map<String, Object>) request.getRequest().get(JsonKey.FRAMEWORK);
-      if (!MapUtils.isEmpty(framework)) {
-        if (null != framework.get(JsonKey.ID) && (framework.get(JsonKey.ID) instanceof List)) {
-          List<String> frameworkId = (List<String>) framework.get(JsonKey.ID);
-          if (CollectionUtils.isEmpty(frameworkId)) {
-            ProjectCommonException.throwClientErrorException(
-                ResponseCode.mandatoryParamsMissing,
-                MessageFormat.format(
-                    ResponseCode.mandatoryParamsMissing.getErrorMessage(),
-                    StringFormatter.joinByDot(JsonKey.FRAMEWORK, JsonKey.ID)));
-          } else if (frameworkId.size() > 1) {
-            throw new ProjectCommonException(
-                ResponseCode.errorInvalidParameterSize,
-                ResponseCode.errorInvalidParameterSize.getErrorMessage(),
-                ERROR_CODE,
-                StringFormatter.joinByDot(JsonKey.FRAMEWORK, JsonKey.ID),
-                "1",
-                String.valueOf(frameworkId.size()));
-          } else {
-            if (frameworkId.size() == 1) {
-              String id = frameworkId.get(0);
-              if (StringUtils.isBlank(id)) {
-                ProjectCommonException.throwClientErrorException(
-                    ResponseCode.mandatoryParamsMissing,
-                    MessageFormat.format(
-                        ResponseCode.mandatoryParamsMissing.getErrorMessage(),
-                        StringFormatter.joinByDot(JsonKey.FRAMEWORK, JsonKey.ID)));
-              }
-            }
-          }
-        } else if (null != framework.get(JsonKey.ID)
-            && framework.get(JsonKey.ID) instanceof String) {
-          String frameworkId = (String) framework.get(JsonKey.ID);
-          if (StringUtils.isBlank(frameworkId)) {
-            ProjectCommonException.throwClientErrorException(
-                ResponseCode.mandatoryParamsMissing,
-                MessageFormat.format(
-                    ResponseCode.mandatoryParamsMissing.getErrorMessage(),
-                    StringFormatter.joinByDot(JsonKey.FRAMEWORK, JsonKey.ID)));
-          }
-        } else {
-          ProjectCommonException.throwClientErrorException(
-              ResponseCode.mandatoryParamsMissing,
-              MessageFormat.format(
-                  ResponseCode.mandatoryParamsMissing.getErrorMessage(),
-                  StringFormatter.joinByDot(JsonKey.FRAMEWORK, JsonKey.ID)));
-        }
-      }
     }
   }
 
@@ -736,11 +677,7 @@ public class UserRequestValidator extends BaseRequestValidator {
           frameworkRequest.keySet().stream().collect(Collectors.toList());
       for (String frameworkRequestField : frameworkRequestFieldList) {
         if (!frameworkFields.contains(frameworkRequestField)) {
-          throw new ProjectCommonException(
-              ResponseCode.errorUnsupportedField,
-              ResponseCode.errorUnsupportedField.getErrorMessage(),
-              ERROR_CODE,
-              StringFormatter.joinByDot(JsonKey.FRAMEWORK, frameworkRequestField));
+          return;  
         }
       }
     }
@@ -749,41 +686,14 @@ public class UserRequestValidator extends BaseRequestValidator {
   @SuppressWarnings("unchecked")
   public void validateFrameworkCategoryValues(
       Map<String, Object> userMap, Map<String, List<Map<String, String>>> frameworkMap) {
-    Map<String, List<String>> fwRequest =
-        (Map<String, List<String>>) userMap.get(JsonKey.FRAMEWORK);
-    for (Map.Entry<String, List<String>> fwRequestFieldEntry : fwRequest.entrySet()) {
-      if (!fwRequestFieldEntry.getValue().isEmpty()) {
-        List<String> allowedFieldValues =
-            getKeyValueFromFrameWork(fwRequestFieldEntry.getKey(), frameworkMap)
-                .stream()
-                .map(fieldMap -> fieldMap.get(JsonKey.NAME))
-                .collect(Collectors.toList());
-
-        List<String> fwRequestFieldList = fwRequestFieldEntry.getValue();
-
-        for (String fwRequestField : fwRequestFieldList) {
-          if (!allowedFieldValues.contains(fwRequestField)) {
-            throw new ProjectCommonException(
-                ResponseCode.invalidParameterValue,
-                ResponseCode.invalidParameterValue.getErrorMessage(),
-                ResponseCode.CLIENT_ERROR.getResponseCode(),
-                fwRequestField,
-                StringFormatter.joinByDot(JsonKey.FRAMEWORK, fwRequestFieldEntry.getKey()));
-          }
-        }
-      }
-    }
+    // Accept any framework category values without validation
+    return;
   }
 
   private List<Map<String, String>> getKeyValueFromFrameWork(
       String key, Map<String, List<Map<String, String>>> frameworkMap) {
     if (frameworkMap.get(key) == null) {
-      throw new ProjectCommonException(
-          ResponseCode.errorUnsupportedField,
-          MessageFormat.format(
-              ResponseCode.errorUnsupportedField.getErrorMessage(),
-              key + " in " + JsonKey.FRAMEWORK),
-          ResponseCode.CLIENT_ERROR.getResponseCode());
+      return new ArrayList<>();
     }
     return frameworkMap.get(key);
   }

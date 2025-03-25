@@ -54,6 +54,12 @@
 			<groupId>org.sunbird</groupId>
 			<artifactId>platform-common</artifactId>
 			<version>1.0-SNAPSHOT</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.sunbird.actor.user.validator</groupId>
+					<artifactId>UserRequestValidator</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>com.typesafe.play</groupId>
