@@ -56,13 +56,6 @@ public class TenantMigrationServiceImpl implements TenantMigrationService {
 
   public void validateUserCustodianOrgId(String rootOrgId) {
     String custodianOrgId = DataCacheHandler.getConfigSettings().get(JsonKey.CUSTODIAN_ORG_ID);
-    if (!rootOrgId.equalsIgnoreCase(custodianOrgId)) {
-      ProjectCommonException.throwClientErrorException(
-          ResponseCode.parameterMismatch,
-          MessageFormat.format(
-              ResponseCode.parameterMismatch.getErrorMessage(),
-              "user rootOrgId and custodianOrgId"));
-    }
   }
 
   public String validateOrgExternalIdOrOrgIdAndGetOrgId(
