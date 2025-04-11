@@ -35,9 +35,14 @@ public class ProjectUtil {
   public static final String YEAR_MONTH_DATE_FORMAT = "yyyy-MM-dd";
   public static PropertiesCache propertiesCache;
   private static Pattern pattern;
-  public static final String EMAIL_PATTERN =
-      "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-          + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+  // public static final String EMAIL_PATTERN =
+  //     "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+  //         + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+
+  public static final String DEFAULT_EMAIL_PATTERN = "^([A-Za-z0-9!#$%&'*+/=?^_\\{|}~-]+(\\.[A-Za-z0-9!#$%&'*+/=?^_\\{|}~-]+)*|\\\"([A-Za-z0-9!#$%&'*+/=?^_\\{|}~-]+|\\.[A-Za-z0-9!#$%&'*+/=?^_\\{|}~-]+)*\\\")@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+
+  public static final String EMAIL_PATTERN = System.getenv().getOrDefault("EMAIL_VALIDATION_PATTERN", DEFAULT_EMAIL_PATTERN);
+
   public static final String[] excludes =
       new String[] {
         JsonKey.COMPLETENESS, JsonKey.MISSING_FIELDS, JsonKey.PROFILE_VISIBILITY, JsonKey.LOGIN_ID
