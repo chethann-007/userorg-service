@@ -28,7 +28,7 @@ This GitHub Actions workflow is triggered automatically whenever a pull request 
      mvn sonar:sonar \
        -Dsonar.projectKey=sunbird-lern \
        -Dsonar.organization=sunbird-lern \
-       -Dsonar.host.url=[https://sonarcloud.io](https://sonarcloud.io) \
+       -Dsonar.host.url=https://sonarcloud.io \
        -Dsonar.coverage.jacoco.xmlReportPaths=service/target/site/jacoco/jacoco.xml
      ```
 
