@@ -37,7 +37,7 @@ jobs:
 
       # Set up JDK 17 for running SonarQube analysis (if required by plugins)
       - name: Set up JDK 17
-        uses: actions/setup-java@v2
+        uses: actions/setup-java@v3
         with:
           java-version: '17'
           distribution: 'temurin'
