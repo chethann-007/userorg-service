@@ -47,6 +47,17 @@
 			<groupId>com.typesafe.akka</groupId>
 			<artifactId>akka-remote_${scala.major.version}</artifactId>
 			<version>${typesafe.akka.version}</version>
+			<exclusions>
+                <exclusion>
+                    <groupId>io.netty</groupId>
+                    <artifactId>netty</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
+            <version>4.1.77.Final</version>
 		</dependency>
 		<dependency>
 			<groupId>org.reflections</groupId>
