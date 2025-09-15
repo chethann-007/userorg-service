@@ -172,7 +172,7 @@ public class UserUpdateActor extends UserBaseActor {
     } else {
       userService.validateUserId(actorMessage, managedById, actorMessage.getRequestContext());
     }
-
+    UserUtil.validateUserFrameworkData(userMap, userDbRecord, actorMessage.getRequestContext());
     // Check if the user is Custodian Org user
     boolean isCustodianOrgUser = isCustodianOrgUser((String) userDbRecord.get(JsonKey.ROOT_ORG_ID));
     encryptExternalDetails(userMap, userDbRecord);
