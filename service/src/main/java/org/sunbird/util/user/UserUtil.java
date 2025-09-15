@@ -864,10 +864,8 @@ public class UserUtil {
       for(Map.Entry<String, Object> entry: framework.entrySet()){
         String key = entry.getKey();
         Object value = entry.getValue();
-        if(!JsonKey.ID.equals(key) && value instanceof String){
-          List<String> listValue = new ArrayList<>();
-          listValue.add((String) value);
-          framework.put(key, listValue);
+        if(!JsonKey.ID.equals(key) && value instanceof String) {
+          framework.put(key, Arrays.asList((String) value));
         }
       }
       
