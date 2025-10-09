@@ -1,19 +1,19 @@
 package org.sunbird.actor.user;
 
-import static akka.testkit.JavaTestKit.duration;
+import static org.apache.pekko.testkit.JavaTestKit.duration;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.powermock.api.mockito.PowerMockito.mock;
 import static org.powermock.api.mockito.PowerMockito.when;
 
-import akka.actor.ActorRef;
-import akka.actor.ActorSelection;
-import akka.actor.ActorSystem;
-import akka.actor.Props;
-import akka.dispatch.Futures;
-import akka.pattern.Patterns;
-import akka.pattern.PipeToSupport;
-import akka.testkit.javadsl.TestKit;
-import akka.util.Timeout;
+import org.apache.pekko.actor.ActorRef;
+import org.apache.pekko.actor.ActorSelection;
+import org.apache.pekko.actor.ActorSystem;
+import org.apache.pekko.actor.Props;
+import org.apache.pekko.dispatch.Futures;
+import org.apache.pekko.pattern.Patterns;
+import org.apache.pekko.pattern.PipeToSupport;
+import org.apache.pekko.testkit.javadsl.TestKit;
+import org.apache.pekko.util.Timeout;
 import java.util.*;
 
 import org.codehaus.jackson.map.ObjectMapper;

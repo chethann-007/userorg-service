@@ -1,13 +1,13 @@
 package modules;
 
-import akka.routing.FromConfig;
-import akka.routing.RouterConfig;
+import org.apache.pekko.routing.FromConfig;
+import org.apache.pekko.routing.RouterConfig;
 import com.google.inject.AbstractModule;
 import org.sunbird.logging.LoggerUtil;
-import play.libs.akka.AkkaGuiceSupport;
+import org.playframework.pekko.PekkoGuiceSupport;
 import util.ACTORS;
 
-public class ActorStartModule extends AbstractModule implements AkkaGuiceSupport {
+public class ActorStartModule extends AbstractModule implements PekkoGuiceSupport {
   private static LoggerUtil logger = new LoggerUtil(ActorStartModule.class);
 
   @Override

@@ -1,6 +1,6 @@
 package filters;
 
-import akka.stream.Materializer;
+import org.apache.pekko.stream.Materializer;
 import java.util.function.BiFunction;
 import javax.inject.Inject;
 import org.apache.http.HttpHeaders;
