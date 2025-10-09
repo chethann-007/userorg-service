@@ -1,7 +1,5 @@
 package org.sunbird.actor.role;
 
-import java.time.Duration;
-
 import static org.junit.Assert.assertTrue;
 import static org.powermock.api.mockito.PowerMockito.mock;
 import static org.powermock.api.mockito.PowerMockito.when;
@@ -48,7 +46,6 @@ import org.sunbird.service.organisation.impl.OrgServiceImpl;
 import org.sunbird.util.Util;
 import scala.concurrent.Future;
 import scala.concurrent.Promise;
-import scala.concurrent.duration.Duration;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({
@@ -217,15 +214,15 @@ public class UserRoleActorTest {
       subject.tell(getRequestObj(isOrgIdReq), probe.getRef());
     }
     if (errorResponse == null) {
-      Response res = probe.expectMsgClass(Duration.ofSeconds(100), Response.class);
+      Response res = probe.expectMsgClass(java.time.Duration.ofSeconds(100), Response.class);
       return null != res && res.getResponseCode() == ResponseCode.OK;
     } else {
-      Response res1 = probe.expectMsgClass(Duration.ofSeconds(100), Response.class);
+      Response res1 = probe.expectMsgClass(java.time.Duration.ofSeconds(100), Response.class);
       if (res1.getResult().size() <= 1) {
         return false;
       }
       ProjectCommonException res =
-          probe.expectMsgClass(Duration.ofSeconds(100), ProjectCommonException.class);
+          probe.expectMsgClass(java.time.Duration.ofSeconds(100), ProjectCommonException.class);
       return res.getErrorResponseCode() == errorResponse.getResponseCode();
     }
   }

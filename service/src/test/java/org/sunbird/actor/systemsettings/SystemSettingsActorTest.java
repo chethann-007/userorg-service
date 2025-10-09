@@ -1,7 +1,5 @@
 package org.sunbird.actor.systemsettings;
 
-import java.time.Duration;
-
 import static org.powermock.api.mockito.PowerMockito.when;
 
 import org.apache.pekko.actor.ActorRef;
@@ -13,6 +11,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -51,7 +50,7 @@ import scala.concurrent.duration.FiniteDuration;
   "javax.crypto.*"
 })
 public class SystemSettingsActorTest {
-  private static final FiniteDuration ACTOR_MAX_WAIT_DURATION = Duration.ofSeconds(100);
+  private static final FiniteDuration ACTOR_MAX_WAIT_DURATION = FiniteDuration.apply(100, TimeUnit.SECONDS);
   private ActorSystem system;
   private Props props;
   private TestKit probe;

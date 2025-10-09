@@ -1,7 +1,5 @@
 package org.sunbird.actor.user;
 
-import java.time.Duration;
-
 import static org.junit.Assert.assertTrue;
 
 import org.apache.pekko.actor.ActorRef;
@@ -14,6 +12,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
@@ -63,7 +62,7 @@ import scala.concurrent.duration.FiniteDuration;
 @SuppressStaticInitializationFor("org.sunbird.common.ElasticSearchUtil")
 public class UserAssignRoleTest {
 
-  private static final FiniteDuration ACTOR_MAX_WAIT_DURATION = Duration.ofSeconds(120);
+  private static final FiniteDuration ACTOR_MAX_WAIT_DURATION = FiniteDuration.apply(120, TimeUnit.SECONDS);
   private static String ID = "id001";
   private static String orgId = "testOrg001";
   private static String userId = "testUser001";
