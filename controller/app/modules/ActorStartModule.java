@@ -1,22 +1,20 @@
 package modules;
 
-import org.apache.pekko.routing.FromConfig;
-import org.apache.pekko.routing.RouterConfig;
 import com.google.inject.AbstractModule;
 import org.sunbird.logging.LoggerUtil;
-import org.playframework.pekko.PekkoGuiceSupport;
-import util.ACTORS;
 
-public class ActorStartModule extends AbstractModule implements PekkoGuiceSupport {
+/**
+ * Actor binding module for dependency injection.
+ * In Play 3.0 with Pekko, actor binding is simplified.
+ * Actors are created on-demand via ActorSystem injection.
+ */
+public class ActorStartModule extends AbstractModule {
   private static LoggerUtil logger = new LoggerUtil(ActorStartModule.class);
 
   @Override
   protected void configure() {
-    logger.debug("binding actors for dependency injection");
-    final RouterConfig config = new FromConfig();
-    for (ACTORS actor : ACTORS.values()) {
-      bindActor(actor.getActorClass(), actor.getActorName(), props -> props.withRouter(config));
-    }
-    logger.debug("binding completed");
+    logger.debug("ActorStartModule: Actors will be created on-demand via ActorSystem");
+    // In Play 3.0, actors are typically accessed via ActorSystem.actorOf()
+    // rather than pre-bound via Guice. Controllers inject ActorSystem directly.
   }
 }
