@@ -1,6 +1,7 @@
 package org.sunbird.actor.user;
 
-import static org.apache.pekko.testkit.JavaTestKit.duration;
+import java.time.Duration;
+
 import static org.junit.Assert.assertTrue;
 
 import org.apache.pekko.actor.ActorRef;
@@ -62,7 +63,7 @@ import scala.concurrent.duration.FiniteDuration;
 @SuppressStaticInitializationFor("org.sunbird.common.ElasticSearchUtil")
 public class UserAssignRoleTest {
 
-  private static final FiniteDuration ACTOR_MAX_WAIT_DURATION = duration("120 second");
+  private static final FiniteDuration ACTOR_MAX_WAIT_DURATION = Duration.ofSeconds(120);
   private static String ID = "id001";
   private static String orgId = "testOrg001";
   private static String userId = "testUser001";

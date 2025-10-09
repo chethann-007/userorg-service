@@ -1,6 +1,7 @@
 package org.sunbird.actor.user;
 
-import static org.apache.pekko.testkit.JavaTestKit.duration;
+import java.time.Duration;
+
 import static org.junit.Assert.assertNotNull;
 import static org.powermock.api.mockito.PowerMockito.when;
 
@@ -29,7 +30,7 @@ public class SSUUserCreateActorTest extends UserManagementActorTestBase {
     subject.tell(
         getRequest(true, true, true, getAdditionalMapData(reqMap), ActorOperations.CREATE_SSU_USER),
         probe.getRef());
-    Exception ex = probe.expectMsgClass(duration("1000 second"), NullPointerException.class);
+    Exception ex = probe.expectMsgClass(Duration.ofSeconds(1000), NullPointerException.class);
     assertNotNull(ex);
   }
 }

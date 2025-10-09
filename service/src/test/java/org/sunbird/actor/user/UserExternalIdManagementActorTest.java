@@ -1,6 +1,7 @@
 package org.sunbird.actor.user;
 
-import static org.apache.pekko.testkit.JavaTestKit.duration;
+import java.time.Duration;
+
 import static org.powermock.api.mockito.PowerMockito.mock;
 import static org.powermock.api.mockito.PowerMockito.when;
 
@@ -136,7 +137,7 @@ public class UserExternalIdManagementActorTest {
     request.setRequest(innerMap);
 
     subject.tell(request, probe.getRef());
-    Response response = probe.expectMsgClass(duration("100 second"), Response.class);
+    Response response = probe.expectMsgClass(Duration.ofSeconds(100), Response.class);
     Assert.assertTrue(null != response && response.getResponseCode() == ResponseCode.OK);
   }
 
@@ -162,7 +163,7 @@ public class UserExternalIdManagementActorTest {
     request.setRequest(innerMap);
 
     subject.tell(request, probe.getRef());
-    Response response = probe.expectMsgClass(duration("100 second"), Response.class);
+    Response response = probe.expectMsgClass(Duration.ofSeconds(100), Response.class);
     Assert.assertTrue(null != response && response.getResponseCode() == ResponseCode.OK);
   }
 
@@ -189,7 +190,7 @@ public class UserExternalIdManagementActorTest {
     request.setRequest(innerMap);
 
     subject.tell(request, probe.getRef());
-    Response response = probe.expectMsgClass(duration("100 second"), Response.class);
+    Response response = probe.expectMsgClass(Duration.ofSeconds(100), Response.class);
     Assert.assertTrue(null != response && response.getResponseCode() == ResponseCode.OK);
   }
 
@@ -216,7 +217,7 @@ public class UserExternalIdManagementActorTest {
     request.setRequest(innerMap);
 
     subject.tell(request, probe.getRef());
-    Response response = probe.expectMsgClass(duration("100 second"), Response.class);
+    Response response = probe.expectMsgClass(Duration.ofSeconds(100), Response.class);
     Assert.assertTrue(null != response && response.getResponseCode() == ResponseCode.OK);
   }
 }

@@ -1,6 +1,7 @@
 package org.sunbird.actor.notification;
 
-import static org.apache.pekko.testkit.JavaTestKit.duration;
+import java.time.Duration;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
@@ -145,7 +146,7 @@ public class SendNotificationActorTest {
     reqMap.put(JsonKey.EMAIL_TEMPLATE_TYPE, "default");
     reqObj.getRequest().put(JsonKey.EMAIL_REQUEST, reqMap);
     subject.tell(reqObj, probe.getRef());
-    Response response = probe.expectMsgClass(duration("1000 second"), Response.class);
+    Response response = probe.expectMsgClass(Duration.ofSeconds(1000), Response.class);
     assertTrue(response != null);
   }
 
@@ -185,7 +186,7 @@ public class SendNotificationActorTest {
 
     subject.tell(reqObj, probe.getRef());
     ProjectCommonException exc =
-        probe.expectMsgClass(duration("10 second"), ProjectCommonException.class);
+        probe.expectMsgClass(Duration.ofSeconds(10), ProjectCommonException.class);
     assertTrue(exc.getErrorCode().equals(ResponseCode.invalidParameterValue.getErrorCode()));
   }
 
@@ -227,7 +228,7 @@ public class SendNotificationActorTest {
     reqObj.setRequest(innerMap);
     subject.tell(reqObj, probe.getRef());
     ProjectCommonException exc =
-        probe.expectMsgClass(duration("10 second"), ProjectCommonException.class);
+        probe.expectMsgClass(Duration.ofSeconds(10), ProjectCommonException.class);
     assertEquals(
         "UOS_NOTI" + ResponseCode.invalidParameterValue.getErrorCode(), exc.getErrorCode());
   }
@@ -256,7 +257,7 @@ public class SendNotificationActorTest {
     reqMap.put(JsonKey.EMAIL_TEMPLATE_TYPE, "default");
     reqObj.getRequest().put(JsonKey.EMAIL_REQUEST, reqMap);
     subject.tell(reqObj, probe.getRef());
-    Response response = probe.expectMsgClass(duration("1000 second"), Response.class);
+    Response response = probe.expectMsgClass(Duration.ofSeconds(1000), Response.class);
     assertNotNull(response);
   }
 
@@ -268,7 +269,7 @@ public class SendNotificationActorTest {
     request.setOperation("invalidOperation");
     subject.tell(request, probe.getRef());
     ProjectCommonException exception =
-        probe.expectMsgClass(duration("10 second"), ProjectCommonException.class);
+        probe.expectMsgClass(Duration.ofSeconds(10), ProjectCommonException.class);
     Assert.assertNotNull(exception);
   }
 }

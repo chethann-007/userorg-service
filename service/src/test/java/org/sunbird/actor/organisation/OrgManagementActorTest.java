@@ -1,6 +1,7 @@
 package org.sunbird.actor.organisation;
 
-import static org.apache.pekko.testkit.JavaTestKit.duration;
+import java.time.Duration;
+
 import static org.junit.Assert.*;
 import static org.powermock.api.mockito.PowerMockito.*;
 
@@ -520,7 +521,7 @@ public class OrgManagementActorTest {
     subject.tell(request, probe.getRef());
 
     if (errorCode == null) {
-      Response res = probe.expectMsgClass(duration("5 second"), Response.class);
+      Response res = probe.expectMsgClass(Duration.ofSeconds(5), Response.class);
       return null != res && res.getResponseCode() == ResponseCode.OK;
     } else {
       ProjectCommonException res = probe.expectMsgClass(ProjectCommonException.class);

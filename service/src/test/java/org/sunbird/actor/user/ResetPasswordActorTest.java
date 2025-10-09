@@ -1,6 +1,7 @@
 package org.sunbird.actor.user;
 
-import static org.apache.pekko.testkit.JavaTestKit.duration;
+import java.time.Duration;
+
 import static org.mockito.Mockito.when;
 import static org.powermock.api.mockito.PowerMockito.mock;
 
@@ -229,11 +230,11 @@ public class ResetPasswordActorTest {
     ActorRef subject = system.actorOf(props);
     subject.tell(reqObj, probe.getRef());
     if (errorCode == null) {
-      Response res = probe.expectMsgClass(duration("10 second"), Response.class);
+      Response res = probe.expectMsgClass(Duration.ofSeconds(10), Response.class);
       return null != res && res.getResponseCode() == ResponseCode.OK;
     } else {
       ProjectCommonException res =
-          probe.expectMsgClass(duration("10 second"), ProjectCommonException.class);
+          probe.expectMsgClass(Duration.ofSeconds(10), ProjectCommonException.class);
       return res.getErrorCode().equals(errorCode.getErrorCode())
           || res.getErrorResponseCode() == errorCode.getResponseCode();
     }

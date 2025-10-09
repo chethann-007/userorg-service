@@ -1,5 +1,7 @@
 package org.sunbird.actor.role;
 
+import java.time.Duration;
+
 import org.apache.pekko.actor.ActorRef;
 import org.apache.pekko.actor.ActorSystem;
 import org.apache.pekko.actor.Props;
@@ -37,7 +39,6 @@ import org.sunbird.util.Util;
 
 import java.util.*;
 
-import static org.apache.pekko.testkit.JavaTestKit.duration;
 import static org.junit.Assert.assertTrue;
 import static org.powermock.api.mockito.PowerMockito.mock;
 import static org.powermock.api.mockito.PowerMockito.when;
@@ -137,11 +138,11 @@ public class UserRoleActorTestV2 {
         subject.tell(request, probe.getRef());
 
         if (errorCode == null) {
-            Response res = probe.expectMsgClass(duration("100 second"), Response.class);
+            Response res = probe.expectMsgClass(Duration.ofSeconds(100), Response.class);
             return null != res && res.getResponseCode() == ResponseCode.OK;
         } else {
             ProjectCommonException res =
-                    probe.expectMsgClass(duration("100 second"), ProjectCommonException.class);
+                    probe.expectMsgClass(Duration.ofSeconds(100), ProjectCommonException.class);
             return res.getResponseCode().name().equals(errorCode.name())
                     || res.getErrorResponseCode() == errorCode.getResponseCode();
         }

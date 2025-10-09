@@ -1,6 +1,7 @@
 package org.sunbird.actor.user;
 
-import static org.apache.pekko.testkit.JavaTestKit.duration;
+import java.time.Duration;
+
 import static org.junit.Assert.assertTrue;
 import static org.powermock.api.mockito.PowerMockito.when;
 
@@ -349,6 +350,6 @@ public class SSOUserCreateActorTest extends UserManagementActorTestBase {
     subject.tell(
         getRequest(true, true, true, getAdditionalMapData(reqMap), ActorOperations.CREATE_USER),
         probe.getRef());
-    probe.expectMsgClass(duration("10 second"), Response.class);
+    probe.expectMsgClass(Duration.ofSeconds(10), Response.class);
   }
 }

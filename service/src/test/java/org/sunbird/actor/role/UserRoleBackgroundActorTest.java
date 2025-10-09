@@ -1,6 +1,7 @@
 package org.sunbird.actor.role;
 
-import static org.apache.pekko.testkit.JavaTestKit.duration;
+import java.time.Duration;
+
 
 import org.apache.pekko.actor.ActorRef;
 import org.apache.pekko.actor.ActorSystem;
@@ -77,7 +78,7 @@ public class UserRoleBackgroundActorTest {
     request.setOperation("invalidOperation");
     subject.tell(request, probe.getRef());
     ProjectCommonException exception =
-        probe.expectMsgClass(duration("10 second"), ProjectCommonException.class);
+        probe.expectMsgClass(Duration.ofSeconds(10), ProjectCommonException.class);
     Assert.assertNotNull(exception);
   }
 }

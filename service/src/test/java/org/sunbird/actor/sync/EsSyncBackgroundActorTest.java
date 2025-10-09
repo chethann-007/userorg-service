@@ -1,6 +1,7 @@
 package org.sunbird.actor.sync;
 
-import static org.apache.pekko.testkit.JavaTestKit.duration;
+import java.time.Duration;
+
 import static org.powermock.api.mockito.PowerMockito.mock;
 import static org.powermock.api.mockito.PowerMockito.when;
 
@@ -121,7 +122,7 @@ public class EsSyncBackgroundActorTest {
     reqObj.getRequest().put(JsonKey.DATA, reqMap);
     reqObj.setRequestContext(new RequestContext());
     subject.tell(reqObj, probe.getRef());
-    Response res = probe.expectMsgClass(duration("10 second"), Response.class);
+    Response res = probe.expectMsgClass(Duration.ofSeconds(10), Response.class);
     Assert.assertTrue(null != res && res.getResponseCode() == ResponseCode.OK);
   }
 
@@ -147,7 +148,7 @@ public class EsSyncBackgroundActorTest {
     reqObj.getRequest().put(JsonKey.DATA, reqMap);
     reqObj.setRequestContext(new RequestContext());
     subject.tell(reqObj, probe.getRef());
-    Response res = probe.expectMsgClass(duration("100 second"), Response.class);
+    Response res = probe.expectMsgClass(Duration.ofSeconds(100), Response.class);
     Assert.assertTrue(null != res && res.getResponseCode() == ResponseCode.OK);
   }
 
@@ -173,7 +174,7 @@ public class EsSyncBackgroundActorTest {
     reqObj.getRequest().put(JsonKey.DATA, reqMap);
     reqObj.setRequestContext(new RequestContext());
     subject.tell(reqObj, probe.getRef());
-    Response res = probe.expectMsgClass(duration("100 second"), Response.class);
+    Response res = probe.expectMsgClass(Duration.ofSeconds(100), Response.class);
     Assert.assertTrue(null != res && res.getResponseCode() == ResponseCode.OK);
   }
 

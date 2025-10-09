@@ -1,5 +1,7 @@
 package org.sunbird.actor.user;
 
+import java.time.Duration;
+
 import org.apache.pekko.actor.ActorRef;
 import org.apache.pekko.actor.ActorSystem;
 import org.apache.pekko.actor.Props;
@@ -31,7 +33,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static org.apache.pekko.testkit.JavaTestKit.duration;
 import static org.mockito.ArgumentMatchers.nullable;
 import static org.powermock.api.mockito.PowerMockito.doNothing;
 import static org.powermock.api.mockito.PowerMockito.when;
@@ -156,7 +157,7 @@ public class UserConsentActorTest {
     when(userConsentService.updateConsent(Mockito.any(), Mockito.any())).thenReturn(response);
     
     subject.tell(updateUserConsentRequest(), probe.getRef());
-    Response res = probe.expectMsgClass(duration("100 second"), Response.class);
+    Response res = probe.expectMsgClass(Duration.ofSeconds(100), Response.class);
     Assert.assertTrue(null != res && res.getResponseCode() == ResponseCode.OK);
   }
 
@@ -183,7 +184,7 @@ public class UserConsentActorTest {
     when(userConsentService.getConsent(Mockito.any())).thenReturn(consentList);
 
     subject.tell(getUserConsentRequest(), probe.getRef());
-    Response res = probe.expectMsgClass(duration("10 second"), Response.class);
+    Response res = probe.expectMsgClass(Duration.ofSeconds(10), Response.class);
     Assert.assertTrue(null != res && res.getResponseCode() == ResponseCode.OK);
   }
   

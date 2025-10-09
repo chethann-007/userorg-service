@@ -1,6 +1,7 @@
 package org.sunbird.actor.systemsettings;
 
-import static org.apache.pekko.testkit.JavaTestKit.duration;
+import java.time.Duration;
+
 import static org.powermock.api.mockito.PowerMockito.when;
 
 import org.apache.pekko.actor.ActorRef;
@@ -50,7 +51,7 @@ import scala.concurrent.duration.FiniteDuration;
   "javax.crypto.*"
 })
 public class SystemSettingsActorTest {
-  private static final FiniteDuration ACTOR_MAX_WAIT_DURATION = duration("100 second");
+  private static final FiniteDuration ACTOR_MAX_WAIT_DURATION = Duration.ofSeconds(100);
   private ActorSystem system;
   private Props props;
   private TestKit probe;
@@ -158,7 +159,7 @@ public class SystemSettingsActorTest {
     request.setOperation("invalidOperation");
     subject.tell(request, probe.getRef());
     ProjectCommonException exception =
-        probe.expectMsgClass(duration("10 second"), ProjectCommonException.class);
+        probe.expectMsgClass(Duration.ofSeconds(10), ProjectCommonException.class);
     Assert.assertNotNull(exception);
   }
 

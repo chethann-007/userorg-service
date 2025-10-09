@@ -1,6 +1,7 @@
 package org.sunbird.actor.user;
 
-import static org.apache.pekko.testkit.JavaTestKit.duration;
+import java.time.Duration;
+
 import static org.junit.Assert.assertTrue;
 import static org.powermock.api.mockito.PowerMockito.mock;
 import static org.powermock.api.mockito.PowerMockito.when;
@@ -151,12 +152,12 @@ public class CheckUserExistActorTest {
     ActorRef subject = system.actorOf(props);
     subject.tell(reqObj, probe.getRef());
     if (errorCode == null) {
-      Response res = probe.expectMsgClass(duration("100 second"), Response.class);
+      Response res = probe.expectMsgClass(Duration.ofSeconds(100), Response.class);
       return null != res && res.getResponseCode() == ResponseCode.OK;
     } else {
 
       ProjectCommonException res =
-          probe.expectMsgClass(duration("100 second"), ProjectCommonException.class);
+          probe.expectMsgClass(Duration.ofSeconds(100), ProjectCommonException.class);
       return res.getErrorCode().equals(errorCode.getErrorCode())
           || res.getErrorResponseCode() == errorCode.getResponseCode();
     }
@@ -170,7 +171,7 @@ public class CheckUserExistActorTest {
     request.setOperation("invalidOperation");
     subject.tell(request, probe.getRef());
     ProjectCommonException exception =
-        probe.expectMsgClass(duration("100 second"), ProjectCommonException.class);
+        probe.expectMsgClass(Duration.ofSeconds(100), ProjectCommonException.class);
     Assert.assertNotNull(exception);
   }
 }

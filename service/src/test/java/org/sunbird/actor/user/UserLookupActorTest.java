@@ -1,6 +1,7 @@
 package org.sunbird.actor.user;
 
-import static org.apache.pekko.testkit.JavaTestKit.duration;
+import java.time.Duration;
+
 
 import org.apache.pekko.actor.ActorRef;
 import org.apache.pekko.actor.ActorSystem;
@@ -74,7 +75,7 @@ public class UserLookupActorTest {
     fields.add("status");
     reqObj.put(JsonKey.FIELDS, fields);
     subject.tell(reqObj, probe.getRef());
-    Response res = probe.expectMsgClass(duration("100 second"), Response.class);
+    Response res = probe.expectMsgClass(Duration.ofSeconds(100), Response.class);
     Assert.assertTrue(res != null);
   }
 
@@ -110,7 +111,7 @@ public class UserLookupActorTest {
     fields.add("userId");
     fields.add("status");
     subject.tell(reqObj, probe.getRef());
-    Response res = probe.expectMsgClass(duration("100 second"), Response.class);
+    Response res = probe.expectMsgClass(Duration.ofSeconds(100), Response.class);
     Assert.assertTrue(res != null);
   }
 

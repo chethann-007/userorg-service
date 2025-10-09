@@ -1,6 +1,7 @@
 package org.sunbird.actor.user;
 
-import static org.apache.pekko.testkit.JavaTestKit.duration;
+import java.time.Duration;
+
 
 import org.apache.pekko.actor.ActorRef;
 import org.apache.pekko.actor.ActorSystem;
@@ -31,7 +32,7 @@ public class UserLoginActorTest {
 
     subject.tell(request, probe.getRef());
 
-    Response response = probe.expectMsgClass(duration("10 second"), Response.class);
+    Response response = probe.expectMsgClass(Duration.ofSeconds(10), Response.class);
     Assert.assertTrue(null != response && response.getResponseCode() == ResponseCode.OK);
   }
 }

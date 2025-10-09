@@ -1,6 +1,7 @@
 package org.sunbird.actor.health;
 
-import static org.apache.pekko.testkit.JavaTestKit.duration;
+import java.time.Duration;
+
 import static org.powermock.api.mockito.PowerMockito.when;
 
 import org.apache.pekko.actor.ActorRef;
@@ -70,7 +71,7 @@ public class HealthActorTest {
     Request reqObj = new Request();
     reqObj.setOperation(ActorOperations.HEALTH_CHECK.getValue());
     subject.tell(reqObj, probe.getRef());
-    Response res = probe.expectMsgClass(duration("200 second"), Response.class);
+    Response res = probe.expectMsgClass(Duration.ofSeconds(200), Response.class);
     Assert.assertTrue(null != res.get(JsonKey.RESPONSE));
   }
 
@@ -82,7 +83,7 @@ public class HealthActorTest {
     Request reqObj = new Request();
     reqObj.setOperation(ActorOperations.ACTOR.getValue());
     subject.tell(reqObj, probe.getRef());
-    Response res = probe.expectMsgClass(duration("200 second"), Response.class);
+    Response res = probe.expectMsgClass(Duration.ofSeconds(200), Response.class);
     Assert.assertTrue(null != res.get(JsonKey.RESPONSE));
   }
 
@@ -99,7 +100,7 @@ public class HealthActorTest {
     Request reqObj = new Request();
     reqObj.setOperation(ActorOperations.ES.getValue());
     subject.tell(reqObj, probe.getRef());
-    Response res = probe.expectMsgClass(duration("200 second"), Response.class);
+    Response res = probe.expectMsgClass(Duration.ofSeconds(200), Response.class);
     Assert.assertTrue(null != res.get(JsonKey.RESPONSE));
   }
 
@@ -116,7 +117,7 @@ public class HealthActorTest {
     Request reqObj = new Request();
     reqObj.setOperation(ActorOperations.CASSANDRA.getValue());
     subject.tell(reqObj, probe.getRef());
-    Response res = probe.expectMsgClass(duration("200 second"), Response.class);
+    Response res = probe.expectMsgClass(Duration.ofSeconds(200), Response.class);
     Assert.assertTrue(null != res.get(JsonKey.RESPONSE));
   }
 }

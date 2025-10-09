@@ -1,6 +1,7 @@
 package org.sunbird.actor.user;
 
-import static org.apache.pekko.testkit.JavaTestKit.duration;
+import java.time.Duration;
+
 
 import org.apache.pekko.actor.ActorRef;
 import org.apache.pekko.actor.ActorSystem;
@@ -53,7 +54,7 @@ public class UserTypeActorTest {
     Request reqObj = new Request();
     reqObj.setOperation(ActorOperations.GET_USER_TYPES.getValue());
     subject.tell(reqObj, probe.getRef());
-    Response res = probe.expectMsgClass(duration("1000 second"), Response.class);
+    Response res = probe.expectMsgClass(Duration.ofSeconds(1000), Response.class);
     Assert.assertTrue(res.getResponseCode() == ResponseCode.OK && getResponse(res));
   }
 

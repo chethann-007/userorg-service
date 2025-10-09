@@ -1,6 +1,7 @@
 package org.sunbird.actor.user;
 
-import static org.apache.pekko.testkit.JavaTestKit.duration;
+import java.time.Duration;
+
 import static org.junit.Assert.assertTrue;
 
 import org.apache.pekko.actor.ActorRef;
@@ -93,7 +94,7 @@ public class UserFeedActorTest {
     reqObj.setOperation(ActorOperations.GET_USER_FEED_BY_ID.getValue());
     reqObj.put(JsonKey.USER_ID, "123-456-789");
     subject.tell(reqObj, probe.getRef());
-    Response res = probe.expectMsgClass(duration("10 second"), Response.class);
+    Response res = probe.expectMsgClass(Duration.ofSeconds(10), Response.class);
     Assert.assertTrue(null != res && res.getResponseCode() == ResponseCode.OK);
   }
 
@@ -146,11 +147,11 @@ public class UserFeedActorTest {
     ActorRef subject = system.actorOf(props);
     subject.tell(reqObj, probe.getRef());
     if (errorCode == null) {
-      Response res = probe.expectMsgClass(duration("100 second"), Response.class);
+      Response res = probe.expectMsgClass(Duration.ofSeconds(100), Response.class);
       return null != res && res.getResponseCode() == ResponseCode.OK;
     } else {
       ProjectCommonException res =
-          probe.expectMsgClass(duration("10 second"), ProjectCommonException.class);
+          probe.expectMsgClass(Duration.ofSeconds(10), ProjectCommonException.class);
       return res.getErrorCode().equals(errorCode.getErrorCode())
           || res.getErrorResponseCode() == errorCode.getResponseCode();
     }

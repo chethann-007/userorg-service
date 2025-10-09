@@ -1,6 +1,7 @@
 package org.sunbird.actor.role;
 
-import static org.apache.pekko.testkit.JavaTestKit.duration;
+import java.time.Duration;
+
 import static org.powermock.api.mockito.PowerMockito.mock;
 import static org.powermock.api.mockito.PowerMockito.when;
 
@@ -67,7 +68,7 @@ public class GetUserRoleTest {
     request.setOperation("getUserRolesById");
     request.setRequestContext(new RequestContext());
     subject.tell(request, probe.getRef());
-    Response response = probe.expectMsgClass(duration("100 second"), Response.class);
+    Response response = probe.expectMsgClass(Duration.ofSeconds(100), Response.class);
     Assert.assertNotNull(response);
   }
 
@@ -79,7 +80,7 @@ public class GetUserRoleTest {
     request.setOperation("invalidOperation");
     subject.tell(request, probe.getRef());
     ProjectCommonException exception =
-        probe.expectMsgClass(duration("10 second"), ProjectCommonException.class);
+        probe.expectMsgClass(Duration.ofSeconds(10), ProjectCommonException.class);
     Assert.assertNotNull(exception);
   }
 
