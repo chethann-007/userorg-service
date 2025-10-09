@@ -158,7 +158,7 @@ public class SystemSettingsActorTest {
     request.setOperation("invalidOperation");
     subject.tell(request, probe.getRef());
     ProjectCommonException exception =
-        probe.expectMsgClass(Duration.ofSeconds(10), ProjectCommonException.class);
+        probe.expectMsgClass(java.time.Duration.ofSeconds(10), ProjectCommonException.class);
     Assert.assertNotNull(exception);
   }
 

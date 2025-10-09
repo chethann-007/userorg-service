@@ -46,6 +46,7 @@ import org.sunbird.service.organisation.impl.OrgServiceImpl;
 import org.sunbird.util.Util;
 import scala.concurrent.Future;
 import scala.concurrent.Promise;
+import scala.concurrent.duration.Duration;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({
