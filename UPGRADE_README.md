@@ -107,3 +107,5 @@ License: Now compliant with Apache 2.0 throughout the stack
 ## Known Issues
 
 Scala 2.12/2.13 Conflict: If you encounter NoClassDefFoundError for scala.collection.GenMap, verify dependency tree to ensure no Scala 2.12 artifacts are present. Run mvn dependency:tree and add exclusions for any scala-library or scala-reflect with version 2.12.
+
+Play 3 will automatically apply gzip based on the Accept-Encoding header. You don’t need a custom Java filter.
