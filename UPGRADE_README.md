@@ -78,14 +78,8 @@ mvn clean install -DskipTests
 
 Create distribution package:
 ```
-cd service
-mvn play2:dist
-```
-
-Run application:
-```
 cd controller
-mvn play2:run
+mvn play2:dist
 ```
 
 ## Migration Impact
@@ -105,18 +99,11 @@ License: Now compliant with Apache 2.0 throughout the stack
 
 ## Files Modified
 
-- 5 POM files
-- 130+ Java source files
-- 5 configuration files
-- 38+ test files
+- POM files
+- Java source files
+- configuration files
+- test files
 
 ## Known Issues
 
 Scala 2.12/2.13 Conflict: If you encounter NoClassDefFoundError for scala.collection.GenMap, verify dependency tree to ensure no Scala 2.12 artifacts are present. Run mvn dependency:tree and add exclusions for any scala-library or scala-reflect with version 2.12.
-
-## Next Steps
-
-1. Deploy to staging environment
-2. Execute comprehensive test suite
-3. Perform performance validation
-4. Plan production deployment
