@@ -21,7 +21,7 @@
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <pekko.version>1.0.2</pekko.version>
+        <pekko.version>1.0.3</pekko.version>
         <play2.version>3.0.5</play2.version>
         <jackson.version>2.14.3</jackson.version>
         <CLOUD_STORE_GROUP_ID>org.sunbird</CLOUD_STORE_GROUP_ID>
@@ -184,6 +184,16 @@
                 <exclusion>
                     <groupId>org.scala-lang</groupId>
                     <artifactId>scala-reflect</artifactId>
+                </exclusion>
+                <!-- Exclude Scala 2.12 Jackson module (incompatible with Scala 2.13) -->
+                <exclusion>
+                    <groupId>com.fasterxml.jackson.module</groupId>
+                    <artifactId>jackson-module-scala_2.12</artifactId>
+                </exclusion>
+                <!-- Exclude Jackson databind to use our version (2.14.3) -->
+                <exclusion>
+                    <groupId>com.fasterxml.jackson.core</groupId>
+                    <artifactId>jackson-databind</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>

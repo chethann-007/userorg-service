@@ -37,7 +37,8 @@
 		<play2.plugin.version>1.0.0-rc5</play2.plugin.version>
 		<scala.major.version>2.13</scala.major.version>
 		<scala.version>2.13.12</scala.version>
-		<pekko.version>1.0.2</pekko.version>
+		<pekko.version>1.0.3</pekko.version>
+		<pekko-http.version>1.0.1</pekko-http.version>
 		<jackson.version>2.14.3</jackson.version>
 		<guice.version>5.1.0</guice.version>
 		<slf4j.version>2.0.9</slf4j.version>
@@ -47,6 +48,23 @@
 	<dependencies>
 		<!-- Don't move this dependency below play dependency otherwise it will
 			be overriden by play jackson jar, which uses older version -->
+		<!-- Add Scala collection compatibility library -->
+       
+        
+        <!-- Ensure consistent Scala library version -->
+        <dependency>
+            <groupId>org.scala-lang</groupId>
+            <artifactId>scala-library</artifactId>
+            <version>${scala.version}</version>
+        </dependency>
+        
+        <!-- Add scala-reflect with consistent version -->
+        <dependency>
+            <groupId>org.scala-lang</groupId>
+            <artifactId>scala-reflect</artifactId>
+            <version>${scala.version}</version>
+        </dependency>
+
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
@@ -57,6 +75,16 @@
 			<groupId>org.sunbird</groupId>
 			<artifactId>platform-common</artifactId>
 			<version>1.0-SNAPSHOT</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.scala-lang</groupId>
+					<artifactId>scala-library</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.scala-lang</groupId>
+					<artifactId>scala-reflect</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.playframework</groupId>
@@ -135,6 +163,14 @@
                     <artifactId>slf4j-api</artifactId>
                     <groupId>org.slf4j</groupId>
                 </exclusion>
+				<exclusion>
+					<groupId>org.scala-lang</groupId>
+					<artifactId>scala-library</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.scala-lang</groupId>
+					<artifactId>scala-reflect</artifactId>
+				</exclusion>
             </exclusions>
 		</dependency>
 		<dependency>
