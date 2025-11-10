@@ -72,6 +72,12 @@
             <artifactId>jackson-annotations</artifactId>
             <version>${jackson.version}</version>
         </dependency>
+        <!-- Add compatible Scala Jackson module for Jackson 2.14.3 -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.module</groupId>
+            <artifactId>jackson-module-scala_2.13</artifactId>
+            <version>2.14.3</version>
+        </dependency>
         <dependency>
             <groupId>org.apache.pekko</groupId>
             <artifactId>pekko-slf4j_${scala.major.version}</artifactId>
@@ -189,6 +195,11 @@
                 <exclusion>
                     <groupId>com.fasterxml.jackson.module</groupId>
                     <artifactId>jackson-module-scala_2.12</artifactId>
+                </exclusion>
+                <!-- Exclude incompatible Scala Jackson module version -->
+                <exclusion>
+                    <groupId>com.fasterxml.jackson.module</groupId>
+                    <artifactId>jackson-module-scala_2.13</artifactId>
                 </exclusion>
                 <!-- Exclude Jackson databind to use our version (2.14.3) -->
                 <exclusion>
