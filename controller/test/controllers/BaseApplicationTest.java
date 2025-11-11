@@ -1,6 +1,6 @@
 package controllers;
 
-import akka.actor.ActorSelection;
+import org.apache.pekko.actor.ActorSelection;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import modules.OnRequestHandler;

@@ -1,6 +1,6 @@
 package org.sunbird.common;
 
-import akka.util.Timeout;
+import org.apache.pekko.util.Timeout;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
