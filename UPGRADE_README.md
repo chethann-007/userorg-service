@@ -1,8 +1,8 @@
-# Play Framework 3.0.5 and Apache Pekko 1.0.2 Upgrade
+# Play Framework 3.0.5 and Apache Pekko 1.0.3 Upgrade
 
 ## Overview
 
-This document describes the upgrade of userorg-service from Play Framework 2.7.2 with Akka 2.5.22 to Play Framework 3.0.5 with Apache Pekko 1.0.2.
+This document describes the upgrade of userorg-service from Play Framework 2.7.2 with Akka 2.5.22 to Play Framework 3.0.5 with Apache Pekko 1.0.3.
 
 ## Why This Upgrade
 
@@ -13,7 +13,7 @@ This document describes the upgrade of userorg-service from Play Framework 2.7.2
 ## Technology Stack Changes
 
 - Play Framework: 2.7.2 to 3.0.5
-- Actor Framework: Akka 2.5.22 to Apache Pekko 1.0.2
+- Actor Framework: Akka 2.5.22 to Apache Pekko 1.0.3
 - Scala: 2.12.11 to 2.13.12
 - Guice: 3.0 to 5.1.0
 - SLF4J: 1.6.1 to 2.0.9
