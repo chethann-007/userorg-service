@@ -63,7 +63,7 @@ sunbird_sso_client_secret: ""
 ## You can override these if you have a use case for it
 ENV_NAME: dev
 PORTAL_SERVICE_PORT: http://player.ed.svc.cluster.local:3000
-SUNBIRD_KAFKA_URL: http://kafka.lern.svc.cluster.local:9092
+SUNBIRD_KAFKA_URL: localhost:9092
 accesstoken:
   publickey:
     basepath: /keys/
@@ -75,7 +75,7 @@ sunbird_content_service_api_base_url: http://content-service.knowlg.svc.cluster.
 feed_limit: 30
 form_api_endpoint: /plugin/v1/form/read
 isMultiDCEnabled: false
-kafka_urls: http://kafka.lern.svc.cluster.local:9092
+kafka_urls: localhost:9092
 learner_in_memory_cache_ttl: 600
 notification_service_base_url: http://notification-service.lern.svc.cluster.local:9000
 org_index_alias: org_alias
@@ -85,10 +85,10 @@ sunbird_api_base_url: http://knowledge-mw-service.knowlg.svc.cluster.local:5000
 sunbird_app_name: sunbird
 sunbird_cache_enable: true
 sunbird_cassandra_consistency_level: local_quorum
-sunbird_cassandra_host: http://cassandra.lern.svc.cluster.local
-sunbird_cassandra_password: passwod
+sunbird_cassandra_host: localhost
+sunbird_cassandra_password: yugabyte
 sunbird_cassandra_port: 9042
-sunbird_cassandra_username: admin
+sunbird_cassandra_username: yugabyte
 sunbird_cert_service_base_url: http://cert-service.lern.svc.cluster.local:9000
 ## Storage bucket name where the contents are stores
 sunbird_course_batch_notification_enabled: true
@@ -119,8 +119,8 @@ sunbird_otp_allowed_attempt: 2
 sunbird_otp_expiration: 1800
 sunbird_otp_length: 6
 sunbird_pg_db: quartz
-sunbird_pg_host: postgresql.lern.svc.cluster.local
-sunbird_pg_port: 5432
+sunbird_pg_host: localhost
+sunbird_pg_port: 5433
 sunbird_quartz_mode: cluster
 sunbird_redis_host: redis.lern.svc.cluster.local
 sunbird_redis_port: 6379
@@ -157,19 +157,19 @@ external_secrets:
     key: learner-api-token
   keycloak_federation:
     name: keycloak-federation
-    key: cassandra-storage-provider
+    key: yugabytedb-storage-provider
   keycloak_client_secret:
     name: keycloak-clients
     key: lms
   keycloak_realm_public_key:
     name: keycloak-realms
     key: sunbird
-  postgresql_user:
-    name: postgresql
-    key: postgres-user
-  postgresql_password:
-    name: postgresql
-    key: postgresql-password
+  yugabytedb_user:
+    name: yugabytedb
+    key: yugabyte-user
+  yugabytedb_password:
+    name: yugabytedb
+    key: yugabytedb-password
 
 external_configmaps:
   common_opa_policies:

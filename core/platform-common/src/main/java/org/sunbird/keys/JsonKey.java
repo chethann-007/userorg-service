@@ -62,8 +62,8 @@ public final class JsonKey {
   public static final String COURSE_ID = "courseId";
   public static final String COURSE_NAME = "courseName";
   public static final String CREATE = "create";
-  public static final String CREATED_BY = "createdBy";
-  public static final String CREATED_DATE = "createdDate";
+  public static final String CREATED_BY = "createdby";
+  public static final String CREATED_DATE = "createddate";
   public static final String CURRENT_STATE = "CURRENT_STATE";
   public static final String DATA = "data";
   public static final String KEY = "key";
@@ -111,7 +111,7 @@ public final class JsonKey {
   public static final String FILE = "file";
   public static final String FILE_NAME = "fileName";
   public static final String FILTERS = "filters";
-  public static final String FIRST_NAME = "firstName";
+  public static final String FIRST_NAME = "firstname";
   public static final String FRAMEWORK = "framework";
   public static final String FROM_EMAIL = "fromEmail";
   public static final String GROUP_QUERY = "groupQuery";
@@ -129,11 +129,11 @@ public final class JsonKey {
   public static final String IS_SYSTEM_UPLOAD = "isSystemUpload";
   public static final String IS_AUTH_REQ = "isAuthReq";
   public static final String IS_BLOCKED = "isBlocked";
-  public static final String IS_DELETED = "isDeleted";
+  public static final String IS_DELETED = "isdeleted";
   public static final String JOB_PROFILE = "jobProfile";
   public static final String LANGUAGE = "language";
   public static final String LAST_LOGIN_TIME = "lastLoginTime";
-  public static final String LAST_NAME = "lastName";
+  public static final String LAST_NAME = "lastname";
   public static final String LEARNER_SERVICE = "UserOrg service";
   public static final String LEVEL = "level";
   public static final String LIMIT = "limit";
@@ -150,8 +150,8 @@ public final class JsonKey {
   public static final String MAIL_NOTE = "mail_note";
   public static final String MANDATORY_FIELDS = "mandatoryFields";
   public static final String MAP = "map";
-  public static final String MASKED_EMAIL = "maskedEmail";
-  public static final String MASKED_PHONE = "maskedPhone";
+  public static final String MASKED_EMAIL = "maskedemail";
+  public static final String MASKED_PHONE = "maskedphone";
   public static final String MESSAGE = "message";
   public static final String MESSAGE_ID = "X-msgId";
   public static final String METHOD = "method";
@@ -227,7 +227,7 @@ public final class JsonKey {
   public static final String ROLES = "roles";
   public static final String ROLLUP = "rollup";
   public static final String ROOT_ORG = "rootOrg";
-  public static final String ROOT_ORG_ID = "rootOrgId";
+  public static final String ROOT_ORG_ID = "rootorgid";
   public static final String SEARCH_TOP_N = "searchTopN";
   public static final String SIZE = "size";
   public static final String SLUG = "slug";
@@ -302,7 +302,7 @@ public final class JsonKey {
   public static final String USER_OWNERSHIP_TRANSFER = "user_ownership_transfer";
   public static final String USER_ACTION_ROLE = "user_action_role";
   public static final String USER_DB = "user_db";
-  public static final String USER_ID = "userId";
+  public static final String USER_ID = "userid";
   public static final String USER_IDs = "userIds";
   public static final String USER_NAME = "username";
   public static final String USER_NOTES_DB = "userNotes_db";
@@ -461,7 +461,7 @@ public final class JsonKey {
   public static final String SHADOW_USER = "shadow_user";
   public static final String USER_EXT_ID = "userExtId";
   public static final String STATE_VALIDATED = "stateValidated";
-  public static final String FLAGS_VALUE = "flagsValue";
+  public static final String FLAGS_VALUE = "flagsvalue";
   public static final String CLAIM_STATUS = "claimStatus";
   public static final String SUNBIRD_MIGRATE_USER_BODY = "migrate_user_template";
   public static final String SMS = "sms";
@@ -489,7 +489,7 @@ public final class JsonKey {
   public static final String OTP_EMAIL_WARD_LOGIN_TEMPLATE = "verifyEmailOtpTemplateWard";
   public static final String LIMIT_MANAGED_USER_CREATION = "limit_managed_user_creation";
   public static final String MANAGED_USER_LIMIT = "managed_user_limit";
-  public static final String ACCESS_TOKEN_PUBLICKEY_BASEPATH = "accesstoken.publickey.basepath";
+  public static final String ACCESS_TOKEN_PUBLICKEY_BASEPATH = "/Users/sanketikam4/November/userorg-service/keys";
   public static final String SHA_256_WITH_RSA = "SHA256withRSA";
   public static final String SUB = "sub";
   public static final String DOT_SEPARATOR = ".";
@@ -656,7 +656,7 @@ public final class JsonKey {
   public static final String USER_PRIVATE_FIELDS = "userPrivateFields";
 
   // Release 5.4.0 LR-102
-  public static final String SUNBIRD_KEYSPACE = "sunbird_userorg_keyspace";
+  public static final String SUNBIRD_KEYSPACE = "sunbird";
   public static final String ES_LOCATION_INDEX = "es_location_index";
   public static final String ES_USER_FEED_INDEX = "es_user_feed_index";
   public static final String ES_USER_NOTES_INDEX = "es_user_notes_index";
