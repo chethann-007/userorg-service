@@ -63,7 +63,7 @@ sunbird_sso_client_secret: ""
 ## You can override these if you have a use case for it
 ENV_NAME: dev
 PORTAL_SERVICE_PORT: http://player.ed.svc.cluster.local:3000
-SUNBIRD_KAFKA_URL: localhost:9092
+SUNBIRD_KAFKA_URL: http://kafka.lern.svc.cluster.local:9092
 accesstoken:
   publickey:
     basepath: /keys/
@@ -75,7 +75,7 @@ sunbird_content_service_api_base_url: http://content-service.knowlg.svc.cluster.
 feed_limit: 30
 form_api_endpoint: /plugin/v1/form/read
 isMultiDCEnabled: false
-kafka_urls: localhost:9092
+kafka_urls: http://kafka.lern.svc.cluster.local:9092
 learner_in_memory_cache_ttl: 600
 notification_service_base_url: http://notification-service.lern.svc.cluster.local:9000
 org_index_alias: org_alias
@@ -119,8 +119,8 @@ sunbird_otp_allowed_attempt: 2
 sunbird_otp_expiration: 1800
 sunbird_otp_length: 6
 sunbird_pg_db: quartz
-sunbird_pg_host: localhost
-sunbird_pg_port: 5433
+sunbird_pg_host: postgresql.lern.svc.cluster.local
+sunbird_pg_port: 5432
 sunbird_quartz_mode: cluster
 sunbird_redis_host: redis.lern.svc.cluster.local
 sunbird_redis_port: 6379
